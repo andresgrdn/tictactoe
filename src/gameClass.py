@@ -1,6 +1,6 @@
 from os import system
 
-class Game: # TODO implement
+class Game:
     def __init__(self):
         self.model()
 
@@ -11,13 +11,17 @@ class Game: # TODO implement
         self.player1 = "X"
         self.player2 = "O"
 
-        self.board = ['*' for row in range(3) for col in range(3)]
+        # TODO: Refactor at one line
+        self.board = []
+        for row in range(3):
+            self.board.append(['*' for column in range(3)])
 
         self.states = [
             'draw',
             'win player 1',
             'win player 2']
         
+        # All the win games
         self.win_checks = [
             [(r, 0) for r in range(3)],
             [(r, 1) for r in range(3)],
@@ -34,18 +38,21 @@ class Game: # TODO implement
         print("modeled..")
 
     def control(self):
-        self.entry = input( "*- ")
+        self.entry = input("*- ")
 
-        # for win_state in win_checks:
-        #     for coor in win_state:
-        #         if self.board[coor]
+        # TODO: Do something with the input.. here
 
-        # TODO:
-        # - Implement player 1 and 2 win check
-        # - Implement board checker
+        # check if someone win
+        if self.win(self.player1):
+            self.playing = False
+            self.final_state = self.states[1]
         
+        if self.win(self.player2):
+            self.playing = False
+            self.final_state = self.states[2]
+
+        # check for draw
         if self.board.count('*') == 0 and self.final_state != '':
-            # draw state
             self.final_state = self.states[0]
             self.playing = False
 
@@ -55,4 +62,23 @@ class Game: # TODO implement
         print("controlled..")
 
     def view(self):
+        # TODO: 
+        # - Do a better view for the board
+        # - Do a view for winner state of player 1 and player 2
+        # - Do a view for draw state
+        print(self.board)
         print("viewed..")
+
+    def win(self, player):
+        """
+            win(str) -> bool
+            Asserts if player from input win.
+        """
+        for win_game in self.win_checks:
+            for i in win_game:
+                count = 0
+                # (row, column) to check on board
+                if self.board[i[0]][i[1]] == player:
+                    count+=1
+            if count == 3: return True
+        return False
