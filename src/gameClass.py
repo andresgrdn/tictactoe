@@ -63,10 +63,11 @@ class Game:
 
     def view(self):
         # TODO: 
-        # - Do a better view for the board
+        # - Do a better view for the board check
         # - Do a view for winner state of player 1 and player 2
         # - Do a view for draw state
-        print(self.board)
+        self.default_view(self.player1)
+        
         print("viewed..")
 
     def win(self, player):
@@ -82,3 +83,17 @@ class Game:
                     count+=1
             if count == 3: return True
         return False
+
+    def default_view(self, player):
+        print(f"\
+            \n\t ********* PLAYER {player} *********\
+            \n\
+            \n\t\t    1   2   3\
+            \n\
+            \n\t\t 1  {self.board[0][0]} | {self.board[0][1]} | {self.board[0][2]}\
+            \n\t\t    ----------\
+            \n\t\t 2  {self.board[1][0]} | {self.board[1][1]} | {self.board[1][2]}\
+            \n\t\t    ----------\
+            \n\t\t 3  {self.board[2][0]} | {self.board[2][1]} | {self.board[2][2]}\
+            \n\
+            \n\t")
