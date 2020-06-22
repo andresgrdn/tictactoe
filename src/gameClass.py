@@ -1,20 +1,22 @@
 from os import system
+import random
 
 class Game:
     def __init__(self):
-        self.model()
-
-    def model(self):
         self.playing = True
         self.final_state = ''
 
-        self.player1 = "X"
-        self.player2 = "O"
+        self.player1 = 'X'
+        self.player2 = 'O'
+
+        self.turn = random.choice([self.player1, self.player2])
 
         # TODO: Refactor at one line
         self.board = []
         for row in range(3):
             self.board.append(['*' for column in range(3)])
+
+        self.entry = ''
 
         self.states = [
             'draw',
@@ -37,9 +39,11 @@ class Game:
         ]
         print("modeled..")
 
-    def control(self):
+    def accept_input(self):
         self.entry = input("*- ")
+        print("input accepted.....")
 
+    def control(self):
         # TODO: Do something with the input.. here
 
         # check if someone win
@@ -59,6 +63,12 @@ class Game:
         if self.entry == 'bye':
             self.playing = False
 
+        # Turn controler
+        if self.turn == self.player1:
+            self.turn = self.player2
+        else:
+            self.turn = self.player1
+
         print("controlled..")
 
     def view(self):
@@ -66,7 +76,10 @@ class Game:
         # - Do a better view for the board check
         # - Do a view for winner state of player 1 and player 2
         # - Do a view for draw state
-        self.default_view(self.player1)
+        if self.turn == self.player1: # if player 1 turn
+            self.default_view(self.player1)
+        elif self.turn == self.player2: # if player 2 turn
+            self.default_view(self.player2)
         
         print("viewed..")
 
