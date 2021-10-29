@@ -13,7 +13,9 @@ python -m venv env
 source ~/Scripts/activate
 ```
 4. Clone the repository
-I don't know how to do this step yet. XD
+```shell
+git clone ...
+```
 6. Start to enjoy like you never do
 ```shell
 python game.py
