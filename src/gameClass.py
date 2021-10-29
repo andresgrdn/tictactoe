@@ -11,11 +11,12 @@ class Game:
 
         self.turn = random.choice([self.player1, self.player2])
 
-        # TODO: Refactor at one line
+        # Construye el tablero de 3 col x 3 filas
         self.board = []
         for row in range(3):
             self.board.append(['*' for column in range(3)])
 
+        # Variable para guardar la entrada por teclado
         self.entry = ''
 
         self.states = [
@@ -39,6 +40,7 @@ class Game:
         ]
         print("modeled..")
 
+    # Metodo para hacer un movimiento en el juego
     def accept_input(self):
         self.entry = input("*- ")
         print("input accepted.....")
@@ -86,7 +88,7 @@ class Game:
     def win(self, player):
         """
             win(str) -> bool
-            Asserts if player from input win.
+            Asserts if the player from input won.
         """
         for win_game in self.win_checks:
             for i in win_game:
@@ -97,6 +99,7 @@ class Game:
             if count == 3: return True
         return False
 
+    # Gui de texto del juego, un monton de prints ;D
     def default_view(self, player):
         print(f"\
             \n\t ********* PLAYER {player} *********\
