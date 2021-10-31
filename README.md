@@ -1,6 +1,6 @@
 # tictactoe
 
-## game on command line
+Game on command line
 
 ## Intructions
 
