@@ -1,4 +1,4 @@
-from os import system
+from conf import player
 import random
 
 class Game:
@@ -6,10 +6,7 @@ class Game:
         self.playing = True
         self.final_state = ''
 
-        self.player1 = 'X'
-        self.player2 = 'O'
-
-        self.turn = random.choice([self.player1, self.player2])
+        self.turn = random.choice(player)
 
         # Construye el tablero de 3 col x 3 filas
         self.board = []
@@ -49,11 +46,11 @@ class Game:
         # TODO: Do something with the input.. here
 
         # check if someone win
-        if self.win(self.player1):
+        if self.win(player['1']):
             self.playing = False
             self.final_state = self.states[1]
         
-        if self.win(self.player2):
+        if self.win(player['2']):
             self.playing = False
             self.final_state = self.states[2]
 
@@ -66,10 +63,10 @@ class Game:
             self.playing = False
 
         # Turn controler
-        if self.turn == self.player1:
-            self.turn = self.player2
+        if self.turn == player['1']:
+            self.turn = player['2']
         else:
-            self.turn = self.player1
+            self.turn = player['1']
 
         print("controlled..")
 
@@ -78,10 +75,10 @@ class Game:
         # - Do a better view for the board check
         # - Do a view for winner state of player 1 and player 2
         # - Do a view for draw state
-        if self.turn == self.player1: # if player 1 turn
-            self.default_view(self.player1)
-        elif self.turn == self.player2: # if player 2 turn
-            self.default_view(self.player2)
+        if self.turn == player['1']: # if player 1 turn
+            self.default_view(player['1'])
+        elif self.turn == player['2']: # if player 2 turn
+            self.default_view(player['2'])
         
         print("viewed..")
 
