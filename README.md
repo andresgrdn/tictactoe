@@ -10,7 +10,7 @@ python -m venv env
 ```
 2. Activate the enviroment (linux)
 ```shell
-source ~/Scripts/activate
+source env/bin/activate
 ```
 4. Clone the repository
 ```shell
