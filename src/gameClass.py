@@ -6,7 +6,7 @@ class Game:
         self.playing = True
         self.final_state = ''
 
-        self.turn = random.choice(player)
+        self.turn = random.choice(list(player.values()))
 
         # Construye el tablero de 3 col x 3 filas
         self.board = []
