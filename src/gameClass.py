@@ -7,6 +7,7 @@ class Game:
         self.playing = True
         self.final_state = ''
 
+        # Se escoge aleatoriamente el jugador del primer turno
         self.turn = choice(list(player.values()))
 
         # Variable para guardar la entrada por teclado
