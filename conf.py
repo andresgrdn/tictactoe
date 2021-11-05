@@ -1,3 +1,6 @@
+# Prompt
+prompt = '>> '
+
 # jugadores
 player = {
     '1':'X',
