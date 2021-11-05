@@ -1,12 +1,12 @@
 from conf import player
-import random
+from random import choice
 
 class Game:
     def __init__(self):
         self.playing = True
         self.final_state = ''
 
-        self.turn = random.choice(list(player.values()))
+        self.turn = choice(list(player.values()))
 
         # Construye el tablero de 3 col x 3 filas
         self.board = []
