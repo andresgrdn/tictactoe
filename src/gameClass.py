@@ -1,4 +1,5 @@
 from conf import player
+from conf import board
 from random import choice
 
 class Game:
@@ -7,11 +8,6 @@ class Game:
         self.final_state = ''
 
         self.turn = choice(list(player.values()))
-
-        # Construye el tablero de 3 col x 3 filas
-        self.board = []
-        for row in range(3):
-            self.board.append(['*' for column in range(3)])
 
         # Variable para guardar la entrada por teclado
         self.entry = ''
@@ -55,7 +51,7 @@ class Game:
             self.final_state = self.states[2]
 
         # check for draw
-        if self.board.count('*') == 0 and self.final_state != '':
+        if board.count('*') == 0 and self.final_state != '':
             self.final_state = self.states[0]
             self.playing = False
 
@@ -91,7 +87,7 @@ class Game:
             for i in win_game:
                 count = 0
                 # (row, column) to check on board
-                if self.board[i[0]][i[1]] == player:
+                if board[i[0]][i[1]] == player:
                     count+=1
             if count == 3: return True
         return False
@@ -103,10 +99,10 @@ class Game:
             \n\
             \n\t\t    1   2   3\
             \n\
-            \n\t\t 1  {self.board[0][0]} | {self.board[0][1]} | {self.board[0][2]}\
+            \n\t\t 1  {board[0][0]} | {board[0][1]} | {board[0][2]}\
             \n\t\t    ----------\
-            \n\t\t 2  {self.board[1][0]} | {self.board[1][1]} | {self.board[1][2]}\
+            \n\t\t 2  {board[1][0]} | {board[1][1]} | {board[1][2]}\
             \n\t\t    ----------\
-            \n\t\t 3  {self.board[2][0]} | {self.board[2][1]} | {self.board[2][2]}\
+            \n\t\t 3  {board[2][0]} | {board[2][1]} | {board[2][2]}\
             \n\
             \n\t")
