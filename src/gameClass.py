@@ -1,5 +1,6 @@
 from conf import player
 from conf import board
+from conf import prompt
 from random import choice
 
 class Game:
@@ -36,7 +37,7 @@ class Game:
 
     # Metodo para hacer un movimiento en el juego
     def accept_input(self):
-        self.entry = input("*- ")
+        self.entry = input(f"{prompt} ")
         print("input accepted.....")
 
     def control(self):
