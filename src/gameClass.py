@@ -42,13 +42,10 @@ class Game:
         # TODO: Do something with the input.. here
 
         # check if someone win
-        if self.win(player['1']):
-            self.playing = False
-            self.final_state = self.states[1]
-        
-        if self.win(player['2']):
-            self.playing = False
-            self.final_state = self.states[2]
+        for playr, simbolo in player.items():
+            if self.win(simbolo):
+                self.playing = False
+                self.final_state = self.states[playr]
 
         # check for draw
         if board.count('*') == 0 and self.final_state != '':
