@@ -2,6 +2,7 @@ from conf import player
 from conf import board
 from conf import prompt
 from random import choice
+import sys
 
 class Game:
     def __init__(self):
@@ -42,6 +43,10 @@ class Game:
 
     def control(self):
         # TODO: Do something with the input.. here
+
+        # exit command check
+        if self.entry == 'exit':
+            sys.exit()
 
         # check if someone win
         for playr, simbolo in player.items():
