@@ -8,6 +8,7 @@ class Game:
     def __init__(self):
         self.playing = True
         self.final_state = ''
+        self.pos = dict(row=0, col=0)
 
         # Se escoge aleatoriamente el jugador del primer turno
         self.turn = choice(list(player.values()))
@@ -39,7 +40,17 @@ class Game:
     # Metodo para hacer un movimiento en el juego
     def accept_input(self):
         self.entry = input(f"{prompt} ")
+        
+        #check if is not exit
+        if not (self.entry == 'exit'):
+            entry = self.entry.split()
+
+            # catch the pos entry
+            self.pos['row'] = int(entry[0])
+            self.pos['col'] = int(entry[1])
+        
         print("input accepted.....")
+        print(f'{self.pos}')
 
     def control(self):
         # TODO: Do something with the input.. here
