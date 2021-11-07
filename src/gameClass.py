@@ -11,7 +11,7 @@ class Game:
         self.pos = dict(row=0, col=0)
 
         # Se escoge aleatoriamente el jugador del primer turno
-        self.turn = choice(list(player.values()))
+        self.current_player = choice(list(player.values()))
 
         # Variable para guardar la entrada por teclado
         self.entry = ''
@@ -58,6 +58,9 @@ class Game:
         # exit command check
         if self.entry == 'exit':
             sys.exit()
+        
+        # change symbol at entry pos
+        board[self.pos['row']][self.pos['col']] = self.current_player
 
         # check if someone win
         for playr, simbolo in player.items():
@@ -74,10 +77,10 @@ class Game:
             self.playing = False
 
         # Turn controler
-        if self.turn == player['1']:
-            self.turn = player['2']
+        if self.current_player == player['1']:
+            self.current_player = player['2']
         else:
-            self.turn = player['1']
+            self.current_player = player['1']
 
         print("controlled..")
 
@@ -86,9 +89,9 @@ class Game:
         # - Do a better view for the board check
         # - Do a view for winner state of player 1 and player 2
         # - Do a view for draw state
-        if self.turn == player['1']: # if player 1 turn
+        if self.current_player == player['1']: # if player 1 turn
             self.default_view(player['1'])
-        elif self.turn == player['2']: # if player 2 turn
+        elif self.current_player == player['2']: # if player 2 turn
             self.default_view(player['2'])
         
         print("viewed..")
