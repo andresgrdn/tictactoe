@@ -66,7 +66,7 @@ class Game:
                 self.final_state = self.states[playr]
 
         # check for draw
-        if board.count('*') == 0 and self.final_state != '':
+        if board.count('*') == 0 and not (self.final_state == ''):
             self.final_state = self.states[0]
             self.playing = False
 
