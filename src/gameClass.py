@@ -33,8 +33,8 @@ class Game:
             entry = self.entry.split()
 
             # catch the pos entry
-            self.pos['row'] = int(entry[0])
-            self.pos['col'] = int(entry[1])
+            self.pos['row'] = int(entry[0]) - 1
+            self.pos['col'] = int(entry[1]) - 1
         
         print("input accepted.....")
         print(f'{self.pos}')
