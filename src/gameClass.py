@@ -1,6 +1,7 @@
 from conf import player
 from conf import board
 from conf import prompt
+from conf import win_games
 from random import choice
 import sys
 
@@ -20,21 +21,7 @@ class Game:
             'draw',
             'win player 1',
             'win player 2']
-        
-        # All the win games
-        self.win_checks = [
-            [(r, 0) for r in range(3)],
-            [(r, 1) for r in range(3)],
-            [(r, 2) for r in range(3)],
 
-            [(0, c) for c in range(3)],
-            [(1, c) for c in range(3)],
-            [(2, c) for c in range(3)],
-
-            [(i, i) for i in range(3)],
-
-            [(i, 2 - i) for i in range(3)]
-        ]
         print("modeled..")
 
     # Metodo para hacer un movimiento en el juego
@@ -101,7 +88,7 @@ class Game:
             win(str) -> bool
             Asserts if the player from input won.
         """
-        for win_game in self.win_checks:
+        for win_game in win_games:
             for i in win_game:
                 count = 0
                 # (row, column) to check on board
