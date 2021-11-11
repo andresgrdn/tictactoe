@@ -1,4 +1,4 @@
-from src import *
+from src import Game
 
 def main():
     myGame = Game()
