@@ -56,6 +56,7 @@ class Game:
             # showing the las move
             self.default_view(self.current_player)
 
+        # TODO: Bug1 no se dispara el evento cuando hay un juego empatado draw
         # check for draw
         if board.count('*') == 0 and not (self.final_state == ''):
             self.final_state = self.states[0]
