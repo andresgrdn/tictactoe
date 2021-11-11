@@ -40,8 +40,6 @@ class Game:
         print(f'{self.pos}')
 
     def control(self):
-        # TODO: Do something with the input.. here
-
         # exit command check
         if self.entry == 'exit':
             sys.exit()
@@ -49,14 +47,15 @@ class Game:
         # change symbol at entry pos
         board[self.pos['row']][self.pos['col']] = self.current_player
 
-        # check if someone win
-        for playr, simbolo in player.items():
-            if self.win(simbolo):
-                self.playing = False
-                self.final_state = self.states[int(playr)]
+        # check if the current player won
+        if self.win(self.current_player):
+            self.playing = False
+            
+            # TODO: I really need this?
+            #self.final_state = self.states[int(playr)]
 
-                # showing the las move
-                self.default_view(self.current_player)
+            # showing the las move
+            self.default_view(self.current_player)
 
         # check for draw
         if board.count('*') == 0 and not (self.final_state == ''):

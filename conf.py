@@ -9,6 +9,11 @@ player = {
 
 # Construye el tablero de 3 col x 3 row
 board = [['*' for col in range(3)] for row in range(3)]
+# board = [
+#     ['X', 'O', 'O'],
+#     ['*', 'X', '*'],
+#     ['*', '*', 'x']
+# ]
 
 # win games son las reglas para ganar
 win_games = [
