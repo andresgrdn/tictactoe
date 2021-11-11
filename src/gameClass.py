@@ -78,10 +78,8 @@ class Game:
         # - Do a better view for the board check
         # - Do a view for winner state of player 1 and player 2
         # - Do a view for draw state
-        if self.current_player == player['1']: # if player 1 turn
-            self.default_view(player['1'])
-        elif self.current_player == player['2']: # if player 2 turn
-            self.default_view(player['2'])
+        
+        self.default_view(self.current_player)
         
         print("viewed..")
 
