@@ -53,7 +53,10 @@ class Game:
         for playr, simbolo in player.items():
             if self.win(simbolo):
                 self.playing = False
-                self.final_state = self.states[playr]
+                self.final_state = self.states[int(playr)]
+
+                # showing the las move
+                self.default_view(self.current_player)
 
         # check for draw
         if board.count('*') == 0 and not (self.final_state == ''):
@@ -89,8 +92,8 @@ class Game:
             Asserts if the player from input won.
         """
         for win_game in win_games:
+            count = 0
             for i in win_game:
-                count = 0
                 # (row, column) to check on board
                 if board[i[0]][i[1]] == player:
                     count+=1
