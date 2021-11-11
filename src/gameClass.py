@@ -37,7 +37,6 @@ class Game:
             self.pos['col'] = int(entry[1]) - 1
         
         print("input accepted.....")
-        print(f'{self.pos}')
 
     def control(self):
         # exit command check
