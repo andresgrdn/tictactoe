@@ -51,16 +51,20 @@ class Game:
             self.playing = False
             
             # TODO: I really need this?
-            #self.final_state = self.states[int(playr)]
+            self.final_state = self.states[1]
 
             # showing the las move
             self.default_view(self.current_player)
 
         # TODO: Bug1 no se dispara el evento cuando hay un juego empatado draw
         # check for draw
-        if board.count('*') == 0 and not (self.final_state == ''):
-            self.final_state = self.states[0]
-            self.playing = False
+        count = 0
+        for row in board:
+            if row.count('*') == 0 and self.final_state == '':
+                count+=1
+            if count == 3:
+                self.final_state = self.states[0]
+                self.playing = False
 
         if self.entry == 'bye':
             self.playing = False
