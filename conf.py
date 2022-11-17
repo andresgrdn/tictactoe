@@ -1,22 +1,12 @@
-# Prompt
-prompt = '>> '
+from enum import (
+    Enum,
+    auto,
+)
 
-# jugadores
-player = {
-    '1':'X',
-    '2':'O'
-    }
 
-# Construye el tablero de 3 col x 3 row
-board = [['*' for col in range(3)] for row in range(3)]
-# board = [
-#     ['X', 'O', 'O'],
-#     ['*', 'X', '*'],
-#     ['*', '*', 'x']
-# ]
-
-# win games son las reglas para ganar
-win_games = [
+PROMPT = '>>'
+PLAYERS = ['x', 'y']
+WIN_RULES = [
     # landscape win games
     [(r, 0) for r in range(3)],
     [(r, 1) for r in range(3)],
@@ -31,3 +21,17 @@ win_games = [
     [(i, i) for i in range(3)],
     [(i, 2 - i) for i in range(3)]
 ]
+board = [['*' for col in range(3)] for row in range(3)]
+# ['X', 'O', 'O']
+# ['*', 'X', '*']
+# ['*', '*', 'x']
+QUIT_CMDS: list[str] = [
+    'exit',
+    'bye'
+]
+
+
+class State(Enum):
+    DRAW = auto(),
+    WIN = auto(),
+    NONE = auto(),
