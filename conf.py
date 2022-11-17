@@ -5,7 +5,7 @@ from enum import (
 
 
 PROMPT = '>>'
-PLAYERS = ['x', 'y']
+PLAYERS = ['😇', '💩']
 WIN_RULES = [
     # landscape win games
     [(r, 0) for r in range(3)],

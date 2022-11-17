@@ -14,15 +14,13 @@ class Game:
 
     def __init__(self):
         self.setup()
-        print("modeled..")
+        print("Ready to play...")
 
     def setup(self) -> None:
         self.playing = True
         self.game_state: State = State.NONE
-        self.pos = [0, 0]
-
+        self.move_pos = [0, 0]
         self.current_player = choice(PLAYERS)
-
         self.input_cmd = ''
 
     def parse_input(self):
@@ -33,19 +31,19 @@ class Game:
 
         tokens: list[str] = self.input_cmd.split()
 
-        self.pos = [
+        self.move_pos = [
             int(tokens[0]) - 1,
             int(tokens[1]) - 1,
         ]
 
         print("input parsed.....")
 
-    def control(self):
-        self._change_slot(self.pos, self.current_player)
+    def update_game(self):
+        self._change_slot(self.move_pos, self.current_player)
 
         current_player_win: bool = self._is_winner(self.current_player)
         game_draw: bool = (
-            board.count('*') == 0 and
+            self._empty_slots(board, '*') == 0 and  # type: ignore
             not (self.game_state == State.WIN)
         )
 
@@ -64,7 +62,7 @@ class Game:
             self.current_player == PLAYERS[0]
         ) else PLAYERS[0]
 
-        print("Controlled...")
+        print("Game updated...")
 
     def update_view(self):
         if self.game_state == State.DRAW:
@@ -74,21 +72,7 @@ class Game:
         else:
             self.show_layout(self.current_player)
 
-    def _is_winner(self, player: str) -> bool:
-        winner: bool = False
-
-        for rule in WIN_RULES:
-            points: int = 0
-            for pos in rule:
-                [row, column] = pos
-                if board[row][column] == player:
-                    points += 1
-
-            has_win_points: bool = points == 3
-            if has_win_points:
-                winner = True
-
-        return winner
+        print("Game showed...")
 
     def show_layout(self, player: str) -> None:
         layout = f"\
@@ -142,3 +126,26 @@ class Game:
     def _change_slot(self, pos: list[int], symbol: str) -> None:
         [row, col] = pos
         board[row][col] = symbol
+
+    def _is_winner(self, player: str) -> bool:
+        winner: bool = False
+
+        for rule in WIN_RULES:
+            points: int = 0
+            for pos in rule:
+                [row, column] = pos
+                if board[row][column] == player:
+                    points += 1
+
+            has_win_points: bool = points == 3
+            if has_win_points:
+                winner = True
+
+        return winner
+
+    def _empty_slots(self, board: list, symbol: str) -> int:
+        slots = 0
+        for row in board:
+            slots += row.count(symbol)
+
+        return slots

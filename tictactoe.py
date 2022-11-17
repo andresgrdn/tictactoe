@@ -7,7 +7,7 @@ def main():
     while myGame.playing:
         myGame.update_view()
         myGame.parse_input()
-        myGame.control()
+        myGame.update_game()
 
 
 if __name__ == '__main__':
